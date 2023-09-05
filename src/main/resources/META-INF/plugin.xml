@@ -1,18 +1,17 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.iurkwan.namethatcolor</id>
-    <name>name-that-color Template</name>
+    <name>Name-That-Color</name>
     <vendor>iurkwan</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <depends optional="true" config-file="withKotlin.xml">org.jetbrains.kotlin</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.iurkwan.namethatcolor.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <completion.contributor language="XML" implementationClass="com.github.iurkwan.namethatcolor.plugin.completion.ClipboardCompletionContributor" />
+        <completion.contributor language="XML" implementationClass="com.github.iurkwan.namethatcolor.plugin.completion.CaretCompletionContributor" />
+        <annotator language="XML" implementationClass="com.github.iurkwan.namethatcolor.plugin.annotator.ColorAnnotator"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.iurkwan.namethatcolor.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
 </idea-plugin>
